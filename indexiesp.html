@@ -572,15 +572,6 @@
 }
 
 /* Experiencias Section */
-.experiencias {
-    padding: 80px 20px;
-    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-}
-
 .experiencias-grid {
     display: flex;
     overflow-x: auto;
@@ -623,6 +614,15 @@
 .experiencia-description {
     font-size: 0.95em;
     color: #555;
+}
+
+/* Opcional: Ocultar la barra de scroll en navegadores */
+.experiencias-grid::-webkit-scrollbar {
+    display: none;
+}
+.experiencias-grid {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 /* Opcional: ocultar barra de scroll en desktop */
@@ -912,8 +912,10 @@
         </div>
     </section>
 
-    <!-- Experiencias Section -->
-    <section id="experiencias" class="experiencias">
+
+   <!-- Experiencias Section -->
+<section id="experiencias" class="experiencias">
+    <div class="experiencias-grid">
         
         <div class="experiencia-card scroll-reveal">
             <img src="image/20250413_161223.jpg" alt="Vida marina" class="experiencia-image">
@@ -954,8 +956,10 @@
                 <p class="experiencia-description">Captura momentos únicos en un entorno natural incomparable. Cada rincón de nuestros manglares es una oportunidad para la fotografía perfecta.</p>
             </div>
         </div>
+        
     </div>
 </section>
+
 
 <!-- Tours Section -->
     <section id="tours" class="tours">
