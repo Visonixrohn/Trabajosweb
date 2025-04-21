@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Pasión - Roatan East End Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --color-primary: #006064;
+            --color-secondary: #00897B;
+            --color-accent: #FFD700;
+            --color-dark: #0D47A1;
+            --color-light: #E0F7FA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: #000;
+            color: white;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('image/portada.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-bottom: 100px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.6s ease;
+        }
+
+        .gallery-item.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            transform: translateY(100%);
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover .gallery-content {
+            transform: translateY(0);
+        }
+
+        .gallery-content h3 {
+            color: var(--color-accent);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-content p {
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        /* Story Sections */
+        .story-section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .story-section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .story-section h2 {
+            font-size: 2.5rem;
+            color: var(--color-accent);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .story-section p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            animation: whatsappPulse 2s infinite;
+        }
+
+        @keyframes whatsappPulse {
+            0% {
+                transform: scale(1) rotate(0deg);
+            }
+            20% {
+                transform: scale(1.1) rotate(5deg);
+            }
+            40% {
+                transform: scale(1) rotate(0deg);
+            }
+            60% {
+                transform: scale(1.1) rotate(-5deg);
+            }
+            80% {
+                transform: scale(1) rotate(0deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 2px 2px 15px rgba(0,0,0,0.4);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Roatan East End Experience</a>
+            <a href="indexiesp.html" style="color: white; text-decoration: none; font-size: 1.1rem;"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Creando Experiencias Inolvidables</h1>
+            <p>Cada aventura es una historia que merece ser contada</p>
+        </div>
+    </section>
+
+    <!-- Story Section 1 -->
+    <section class="story-section">
+        <h2>Nuestra Pasión por Roatán</h2>
+        <p>En Roatan East End Experience, no solo ofrecemos tours; creamos momentos que perduran toda la vida. Cada excursión es una oportunidad para compartir la belleza natural y la rica cultura de nuestra isla con viajeros de todo el mundo. Nos apasiona mostrar los tesoros ocultos de Roatán, desde sus cristalinos manglares hasta su vibrante vida marina.</p>
+    </section>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="image/20250413_131742.jpg" alt="Experiencia en manglares">
+            <div class="gallery-content">
+                <h3>El Corazón de los Manglares</h3>
+                <p>Descubre la magia de nuestros manglares, un ecosistema único que alberga innumerables especies.</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="image/20250418_151155.jpg" alt="Aventura natural">
+            <div class="gallery-content">
+                <h3>Conexión con la Naturaleza</h3>
+                <p>Cada tour es una oportunidad para conectar con la esencia pura de Roatán.</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="image/20250418_152406.jpg" alt="Atardecer en manglares">
+            <div class="gallery-content">
+                <h3>Atardeceres Mágicos</h3>
+                <p>Momentos únicos que pintan el cielo con colores inolvidables.</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="image/20250418_114505.jpg" alt="Exploración en kayak">
+            <div class="gallery-content">
+                <h3>Aventuras en Kayak</h3>
+                <p>Explora los misteriosos canales de los manglares de una manera única y emocionante.</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="image/20250413_161223.jpg" alt="Vida marina">
+            <div class="gallery-content">
+                <h3>Biodiversidad Marina</h3>
+                <p>Sumérgete en un mundo lleno de vida y color bajo nuestras aguas cristalinas.</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="image/20250418_164424.jpg" alt="Experiencia local">
+            <div class="gallery-content">
+                <h3>Experiencia Auténtica</h3>
+                <p>Vive Roatán como un local, descubre sus secretos mejor guardados.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Story Section 2 -->
+    <section class="story-section">
+        <h2>Nuestro Compromiso</h2>
+        <p>Nos dedicamos a crear experiencias que van más allá del turismo tradicional. Cada tour está diseñado pensando en la sostenibilidad y el respeto por nuestro entorno natural. Trabajamos en estrecha colaboración con las comunidades locales para asegurar que cada visita contribuya positivamente al desarrollo de nuestra isla.</p>
+        <p>Nuestro equipo está formado por apasionados conocedores de Roatán, expertos que comparten no solo su conocimiento, sino también su amor por esta tierra única. Cada sonrisa, cada historia compartida, cada momento de asombro ante la naturaleza, es lo que nos impulsa a seguir creando experiencias excepcionales.</p>
+    </section>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/50432267504" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Scroll reveal animation for gallery items
+        const observerGallery = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        // Observe gallery items
+        document.querySelectorAll('.gallery-item').forEach((item) => {
+            observerGallery.observe(item);
+        });
+
+        // Observe story sections
+        document.querySelectorAll('.story-section').forEach((section) => {
+            observerGallery.observe(section);
+        });
+    </script>
+</body>
+</html>

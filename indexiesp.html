@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roatan East End Experience - Aventuras en los Manglares</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --color-primary: #006064;
+            --color-secondary: #00897B;
+            --color-accent: #FFD700;
+            --color-dark: #0D47A1;
+            --color-light: #E0F7FA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .nav-link:hover {
+            color: var(--color-accent);
+        }
+        .nav-link2 {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .nav-link2:hover {
+            color: var(--color-accent);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem;
+                gap: 1.5rem;
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+            }
+        }
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url(image/portada.jpeg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #00897B;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 20px;
+            background: var(--color-light);
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about h2 {
+            color: var(--color-primary);
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 100px 20px;
+            background: linear-gradient(rgba(0,0,0,0.95), rgba(0,0,0,0.95));
+            color: white;
+        }
+
+        .gallery-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            background: var(--color-dark);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .gallery-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-image img {
+            transform: scale(1.1);
+        }
+
+        .gallery-content {
+            padding: 20px;
+            background: var(--color-dark);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-content h3 {
+            color: var(--color-accent);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .gallery-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: white;
+        }
+
+        /* Servicios Section */
+        .servicios {
+            padding: 100px 20px;
+            background: linear-gradient(45deg, rgba(0,0,0,0.9), rgba(0,0,0,0.95));
+            color: white;
+        }
+
+        .servicios-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .servicios-header h2 {
+            font-size: 3rem;
+            color: var(--color-accent);
+            margin-bottom: 20px;
+        }
+
+        .servicios-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: white;
+        }
+
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .servicio-card {
+            position: relative;
+            min-height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        .servicio-card.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .servicio-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            transition: transform 0.5s ease;
+        }
+
+        .servicio-content {
+            position: relative;
+            z-index: 2;
+            padding: 40px;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.6));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .servicio-card:hover .servicio-bg {
+            transform: scale(1.1);
+        }
+
+        .servicio-title {
+            font-size: 1.8rem;
+            color: var(--color-accent);
+            margin-bottom: 10px;
+        }
+
+        .servicio-price {
+            font-size: 1.4rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .servicio-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Tours Section */
+        .tours {
+            padding: 100px 20px;
+            background: var(--color-light);
+        }
+
+        .tours-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .tour-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .tour-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .tour-content {
+            padding: 20px;
+        }
+
+        .tour-content h3 {
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+
+        .tour-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .tour-price {
+            color: var(--color-accent);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 20px;
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--color-primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .contact-info {
+            color: white;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-dark);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-logo img {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 15px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Quienes Somos Section */
+.quienes-somos {
+    padding: 100px 20px;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.quienes-somos::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('image/back.jpg') center/cover;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+.quienes-somos-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.quienes-somos h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--color-accent);
+    font-weight: 700;
+}
+
+.quienes-somos p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+.quienes-somos .highlight {
+    color: var(--color-accent);
+    font-weight: 600;
+}
+
+/* Experiencias Section */
+.experiencias {
+    padding: 80px 20px;
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.experiencias-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.experiencia-card {
+    position: relative;
+    height: 500px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transition: all 0.8s ease;
+    opacity: 0;
+    transform: translateY(100px);
+}
+
+.experiencia-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.experiencia-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.experiencia-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    padding: 30px;
+    color: white;
+    transform: translateY(100%);
+    transition: transform 0.5s ease;
+}
+
+.experiencia-card:hover .experiencia-overlay {
+    transform: translateY(0);
+}
+
+.experiencia-card:hover .experiencia-image {
+    transform: scale(1.1);
+}
+
+.experiencia-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--color-accent);
+}
+
+.experiencia-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease 0.2s;
+}
+
+.experiencia-card:hover .experiencia-description {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease;
+}
+
+.scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.experiencia-card.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            animation: whatsappPulse 2s infinite;
+        }
+
+        @keyframes whatsappPulse {
+            0% {
+                transform: scale(1) rotate(0deg);
+            }
+            20% {
+                transform: scale(1.1) rotate(5deg);
+            }
+            40% {
+                transform: scale(1) rotate(0deg);
+            }
+            60% {
+                transform: scale(1.1) rotate(-5deg);
+            }
+            80% {
+                transform: scale(1) rotate(0deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 2px 2px 15px rgba(0,0,0,0.4);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .masonry {
+                column-count: 2;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .masonry {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="experiencias.html" class="nav-logo">Roatan East End Experience </a>
+            <button class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Inicio</a></li>
+                <li><a href="#about" class="nav-link">Nosotros</a></li>
+                <li><a href="experienciasesp.html" class="nav-link2">Galería</a></li>
+                <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                <li><a href="#experiencias" class="nav-link">Experiencias</a></li>
+                <li><a href="#contact" class="nav-link">Contacto</a></li>
+                <li><a href="index.html" class="nav-link2">Ingles</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content hidden">
+            <h1>Descubre los secretos naturales de Roatán</h1>
+            <p>Vive las mejores aventuras entre manglares, cultura y naturaleza virgen</p>
+            <a href="#tours" class="btn">Reserva tu tour</a>
+        </div>
+    </section>
+
+    <!-- Quienes Somos Section -->
+<section class="quienes-somos scroll-reveal">
+    <div class="quienes-somos-content">
+        <h2>¿Quiénes Somos?</h2>
+        <p>En Roatan East End Experience, no solo ofrecemos tours... creamos momentos que se quedan contigo toda la vida. Somos un equipo apasionado por mostrar lo más auténtico, natural y encantador del extremo este de Roatán: sus mágicos manglares, su gente cálida y su cultura vibrante.</p>
+        
+        <p>Nacimos con un propósito claro: crear las mejores experiencias para ti, esas que se sienten, que se viven, que te conectan con la naturaleza y con el alma del Caribe hondureño. Sabemos que cada visita es una oportunidad única para regalarte una historia digna de contar, y por eso cuidamos cada detalle —desde la bienvenida hasta el último adiós— para que tu recorrido por los manglares y comunidades locales sea inolvidable.</p>
+        
+        <p>Nuestros tours no son simples paseos, son travesías personalizadas que combinan la belleza natural de los canales entrelazados de los manglares con relatos, sabores y sonrisas que representan la verdadera esencia de las Islas de la Bahía. Queremos que al final de cada experiencia te lleves más que fotos... que te lleves un pedacito de Roatán en el corazón.</p>
+        
+        <p>Ya seas un aventurero explorando por primera vez o un amante del mar que regresa por más, en Roatan East End Experience te abrimos la puerta a una experiencia genuina, segura, divertida y profundamente memorable. Aquí no eres solo un turista, eres parte de nuestra historia.</p>
+        
+        <p>Ven y descubre con nosotros lo mejor del este de Roatán.<br>
+        <span class="highlight">Porque tu experiencia no solo importa... ¡es lo más importante para nosotros!</span></p>
+    </div>
+</section>
+
+<!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content hidden">
+            <h2>Roatan East End Experience</h2>
+            <p>Somos una empresa comprometida en ofrecer las mejores experiencias turísticas en el oriente de Roatán. Nos especializamos en explorar los majestuosos manglares, la rica fauna marina y la fascinante historia y cultura de nuestra isla.</p>
+            <p>Nuestro compromiso con el turismo ecológico nos impulsa a ofrecer experiencias únicas y personalizadas, siempre respetando y preservando nuestro entorno natural.</p>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="gallery-grid">
+            <div class="gallery-item scroll-reveal">
+                <div class="gallery-image">
+                    <img src="image/back.jpg" alt="Mangrove Tour">
+                </div>
+                <div class="gallery-content">
+                    <h3>Aventuras en los Manglares</h3>
+                    <p>Explora la belleza natural de los manglares de Roatán en nuestros tours guiados. Descubre la rica biodiversidad y aprende sobre este importante ecosistema.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item scroll-reveal">
+                <div class="gallery-image">
+                    <img src="image/20250418_151155.jpg" alt="Wildlife Watching">
+                </div>
+                <div class="gallery-content">
+                    <h3>Observación de Vida Silvestre</h3>
+                    <p>Avista aves exóticas, peces tropicales y otras especies únicas que habitan en los manglares. Una experiencia inolvidable para los amantes de la naturaleza.</p>
+                </div>
+            </div>
+
+            <div class="gallery-item scroll-reveal">
+                <div class="gallery-image">
+                    <img src="image/20250418_114505.jpg" alt="Kayak Adventure">
+                </div>
+                <div class="gallery-content">
+                    <h3>Aventuras en Kayak</h3>
+                    <p>Navega tranquilamente por los canales de los manglares en kayak, la manera perfecta de explorar estos fascinantes ecosistemas acuáticos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Section -->
+    <section id="servicios" class="servicios">
+        <div class="servicios-header scroll-reveal">
+            <h2>Nuestros Servicios</h2>
+            <p>Explora lo mejor del este de Roatán con experiencias únicas diseñadas para que vivas la magia de las Islas de la Bahía. Elige tu aventura ideal y déjate sorprender.</p>
+        </div>
+
+        <div class="servicios-grid">
+            <div class="servicio-card">
+                <div class="servicio-bg" style="background: url('image/20250413_131742.jpg') center/cover;"></div>
+                <div class="servicio-content">
+                    <h3 class="servicio-title">Tour por los Manglares</h3>
+                    <div class="servicio-price">$25 por persona</div>
+                    <p class="servicio-description">Sumérgete en la belleza natural de los manglares del este de Roatán. Un paseo tranquilo entre canales verdes que te conectará con la paz del entorno caribeño. Ideal para quienes buscan relajarse y descubrir paisajes únicos.</p>
+                </div>
+            </div>
+
+            <div class="servicio-card">
+                <div class="servicio-bg" style="background: url('image/20250418_152934.jpg') center/cover;"></div>
+                <div class="servicio-content">
+                    <h3 class="servicio-title">Manglares + Snorkel</h3>
+                    <div class="servicio-price">$35 por persona</div>
+                    <p class="servicio-description">Disfruta de lo mejor de dos mundos: navega por los manglares y luego sumérgete en aguas cristalinas para hacer snorkel entre arrecifes llenos de vida marina. Una experiencia que combina tranquilidad y aventura bajo el sol caribeño.</p>
+                </div>
+            </div>
+
+            <div class="servicio-card">
+                <div class="servicio-bg" style="background: url('image/20250418_164424.jpg') center/cover;"></div>
+                <div class="servicio-content">
+                    <h3 class="servicio-title">Excursión a Pigeon Cays</h3>
+                    <div class="servicio-price">$100 por persona</div>
+                    <p class="servicio-description">Un paraíso escondido en el Caribe te espera. Pigeon Cays es un rincón paradisíaco con playas vírgenes, aguas turquesa y una tranquilidad que enamora. Esta es la joya que no te puedes perder en tu visita a Roatán.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiencias Section -->
+    <section id="experiencias" class="experiencias">
+        
+        <div class="experiencia-card scroll-reveal">
+            <img src="image/20250413_161223.jpg" alt="Vida marina" class="experiencia-image">
+            <div class="experiencia-overlay">
+                <h3 class="experiencia-title">Vida Marina Extraordinaria</h3>
+                <p class="experiencia-description">Observa la increíble diversidad de especies marinas que habitan en nuestros manglares. Una experiencia inolvidable para los amantes de la naturaleza.</p>
+            </div>
+        </div>
+        
+        <div class="experiencia-card scroll-reveal">
+            <img src="image/20250418_152406.jpg" alt="Atardecer en manglares" class="experiencia-image">
+            <div class="experiencia-overlay">
+                <h3 class="experiencia-title">Atardeceres Mágicos</h3>
+                <p class="experiencia-description">Contempla los más espectaculares atardeceres de Roatán mientras navegas por nuestros manglares. Momentos únicos que quedarán grabados en tu memoria.</p>
+            </div>
+        </div>
+
+        <div class="experiencia-card scroll-reveal">
+            <img src="image/20250418_152929.jpg" alt="Exploración natural" class="experiencia-image">
+            <div class="experiencia-overlay">
+                <h3 class="experiencia-title">Exploración Natural</h3>
+                <p class="experiencia-description">Adéntrate en los secretos de nuestros manglares y descubre un mundo de maravillas naturales en cada rincón.</p>
+            </div>
+        </div>
+
+        <div class="experiencia-card scroll-reveal">
+            <img src="image/20250418_154409.jpg" alt="Aventura ecológica" class="experiencia-image">
+            <div class="experiencia-overlay">
+                <h3 class="experiencia-title">Aventura Ecológica</h3>
+                <p class="experiencia-description">Participa en una experiencia única que combina aventura y conservación. Aprende sobre el ecosistema mientras vives momentos inolvidables.</p>
+            </div>
+        </div>
+
+        <div class="experiencia-card scroll-reveal">
+            <img src="image/20250418_164424.jpg" alt="Fotografía natural" class="experiencia-image">
+            <div class="experiencia-overlay">
+                <h3 class="experiencia-title">Paraíso Fotográfico</h3>
+                <p class="experiencia-description">Captura momentos únicos en un entorno natural incomparable. Cada rincón de nuestros manglares es una oportunidad para la fotografía perfecta.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tours Section -->
+    <section id="tours" class="tours">
+        <div class="tours-container">
+            <div class="tour-card hidden">
+                <div class="tour-image" style="background-image: url('image/20250418_154409.jpg')"></div>
+                <div class="tour-content">
+                    <h3>Tour por los Manglares</h3>
+                    <p>Explora la belleza natural de los manglares en kayak mientras aprendes sobre este fascinante ecosistema.</p>
+                    
+                </div>
+            </div>
+            <!-- Add more tour cards as needed -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            
+            <div class="contact-info hidden">
+                <h3>Información de Contacto</h3>
+                <p><i class="fab fa-whatsapp"></i> +504 3226-7504</p>
+                <p><i class="far fa-envelope"></i> roatanvacationdriver@gmail.com</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/roatan_east_end_experience" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com/RoatanEastEndExperience" target="_blank"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h3>Roatan East End Experience</h3>
+            </div>
+            <div class="footer-links">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#tours">Tours</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/50432267504" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Navigation menu functionality
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        const navbar = document.querySelector('.navbar');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Change navbar background on scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        // Scroll reveal animation
+const scrollElements = document.querySelectorAll('.scroll-reveal');
+
+const elementInView = (el, scrollOffset = 0) => {
+    const elementTop = el.getBoundingClientRect().top;
+    return (
+        elementTop <= 
+        (window.innerHeight || document.documentElement.clientHeight) - scrollOffset
+    );
+};
+
+const displayScrollElement = (element) => {
+    element.classList.add('active');
+};
+
+const hideScrollElement = (element) => {
+    element.classList.remove('active');
+};
+
+const handleScrollAnimation = () => {
+    // Animación para todos los elementos con scroll-reveal
+    scrollElements.forEach((el, index) => {
+        if (elementInView(el, 100)) {
+            setTimeout(() => {
+                displayScrollElement(el);
+            }, index * 200);
+        }
+    });
+    
+    // Animación para las tarjetas de servicio
+    const servicioCards = document.querySelectorAll('.servicio-card');
+    servicioCards.forEach((card, index) => {
+        if (elementInView(card, 150)) {
+            setTimeout(() => {
+                card.classList.add('active');
+            }, index * 200);
+        }
+    });
+
+    // Animación para los elementos de la galería
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    galleryItems.forEach((item, index) => {
+        if (elementInView(item, 150)) {
+            setTimeout(() => {
+                item.classList.add('active');
+            }, index * 200);
+        }
+    });
+
+    // Animación para los elementos de experiencias
+    const experienciaItems = document.querySelectorAll('.experiencia-item');
+    experienciaItems.forEach((item, index) => {
+        if (elementInView(item, 150)) {
+            setTimeout(() => {
+                item.classList.add('active');
+            }, index * 200);
+        }
+    });
+};
+
+window.addEventListener('scroll', () => {
+    handleScrollAnimation();
+});
+
+// Initial check for elements in view
+handleScrollAnimation();
+
+// Observe all hidden elements
+        document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                // Close mobile menu if open
+                navMenu.classList.remove('active');
+                
+                // Calculate scroll position with offset for fixed header
+                const headerOffset = 80;
+                const elementPosition = targetSection.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add form submission logic here
+            alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
