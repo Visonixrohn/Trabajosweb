@@ -582,12 +582,56 @@
 }
 
 .experiencias-grid {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
     padding: 20px;
+    scroll-snap-type: x mandatory;
+}
+
+.experiencia-card {
+    flex: 0 0 auto;
+    width: 300px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    overflow: hidden;
+    scroll-snap-align: start;
+    transition: transform 0.3s ease;
+}
+
+.experiencia-card:hover {
+    transform: translateY(-5px);
+}
+
+.experiencia-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.experiencia-overlay {
+    padding: 15px;
+}
+
+.experiencia-title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.experiencia-description {
+    font-size: 0.95em;
+    color: #555;
+}
+
+/* Opcional: ocultar barra de scroll en desktop */
+.experiencias-grid::-webkit-scrollbar {
+    display: none;
+}
+.experiencias-grid {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .experiencia-card {
