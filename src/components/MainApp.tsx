@@ -22,10 +22,12 @@ const MainApp = () => {
       <Navbar />
       <main>
         <Hero />
+         <ProjectsCarousel />
         <InfiniteLogos />
+       
         <About />
         <Services />
-        <ProjectsCarousel />
+        
         <Location />
       </main>
       <Footer />

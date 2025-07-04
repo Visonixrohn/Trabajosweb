@@ -41,7 +41,7 @@ const InfiniteLogos = () => {
           100% { transform: translateX(-66.666%); }
         }
         .animate-scroll-infinite {
-          animation: scroll-infinite 40s linear infinite;
+          animation: scroll-infinite 150s linear infinite;
         }
       `}</style>
     </div>

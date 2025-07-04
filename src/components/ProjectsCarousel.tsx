@@ -91,7 +91,7 @@ const ProjectsCarousel = () => {
   }
 
   return (
-    <section className="w-full bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-20 relative overflow-hidden">
+    <section className="w-full bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 py-20 relative overflow-hidden">
       {/* Animated background particles */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(20)].map((_, i) => (
@@ -111,7 +111,7 @@ const ProjectsCarousel = () => {
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Header with play/pause control */}
         <div className="flex justify-between items-center mb-12">
-          <h2 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+          <h2 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-blue-500 to-cyan-300">
             Proyectos Innovadores
           </h2>
           <button
@@ -119,9 +119,9 @@ const ProjectsCarousel = () => {
             className="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-3 rounded-full transition-all duration-300 border border-white/20 hover:border-white/40 group"
           >
             {isPlaying ? (
-              <Pause className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+              <Pause className="w-6 h-6 text-cyan-200 group-hover:scale-110 transition-transform" />
             ) : (
-              <Play className="w-6 h-6 text-white group-hover:scale-110 transition-transform" />
+              <Play className="w-6 h-6 text-cyan-200 group-hover:scale-110 transition-transform" />
             )}
           </button>
         </div>
@@ -132,7 +132,7 @@ const ProjectsCarousel = () => {
           onMouseLeave={() => setIsPaused(false)}
         >
           {/* Main carousel container */}
-          <div className="relative overflow-hidden rounded-3xl shadow-2xl bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-sm border border-white/10">
+          <div className="relative overflow-hidden rounded-3xl shadow-2xl bg-gradient-to-br from-blue-900/30 to-indigo-900/10 backdrop-blur-sm border border-blue-200/10">
             {/* Carousel track */}
             <div
               className="flex transition-transform duration-[800ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
@@ -171,7 +171,7 @@ const ProjectsCarousel = () => {
                   </div>
 
                   {/* Slide number indicator */}
-                  <div className="absolute top-6 right-6 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm font-medium border border-white/30">
+                  <div className="absolute top-6 right-6 bg-blue-900/40 backdrop-blur-sm px-3 py-1 rounded-full text-cyan-100 text-sm font-medium border border-blue-200/30">
                     {index + 1} / {projects.length}
                   </div>
                 </div>
@@ -204,25 +204,24 @@ const ProjectsCarousel = () => {
                 onClick={() => goToSlide(index)}
                 className={`relative overflow-hidden rounded-full transition-all duration-500 ${
                   current === index
-                    ? "w-12 h-3 bg-gradient-to-r from-blue-400 to-purple-400"
-                    : "w-3 h-3 bg-white/30 hover:bg-white/50"
+                    ? "w-12 h-3 bg-gradient-to-r from-blue-400 to-cyan-400"
+                    : "w-3 h-3 bg-blue-200/30 hover:bg-cyan-200/50"
                 }`}
                 aria-label={`Ir al proyecto ${index + 1}`}
               >
                 {current === index && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 animate-pulse" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 animate-pulse" />
                 )}
               </button>
             ))}
           </div>
 
           {/* Progress bar */}
-          <div className="mt-6 w-full bg-white/20 rounded-full h-1 overflow-hidden">
+          <div className="mt-6 w-full bg-blue-200/20 rounded-full h-1 overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-200 ease-linear"
+              className="h-full bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-400 transition-all duration-200 ease-linear"
               style={{
                 width: `${((current + 1) / projects.length) * 100}%`,
-                background: "linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6)",
               }}
             />
           </div>
