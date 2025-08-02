@@ -1,27 +1,5 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.prr{
-
-position: absolute;
-top: 90%;
-left: 15px;
-width: 100%;
-
-
-}
-
-
-.ff {
-  color: rgb(2, 106, 154);
-  position: absolute;
- 
-  left: 15px;
-  width: 100%;
 }
 
 .logo {
@@ -30,9 +8,11 @@ width: 100%;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -41,6 +21,7 @@ width: 100%;
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
