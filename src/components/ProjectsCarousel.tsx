@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "../contexts/RouterContext";
 import { ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
 import { fetchProjectsFromSheet } from "../lib/fetchSheetData";
@@ -94,7 +94,10 @@ const ProjectsCarousel = () => {
   const { navigateTo } = useRouter();
 
   return (
-    <section className="w-full bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 py-20">
+    <section
+      id="projects-carousel"
+      className="w-full bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 py-20"
+    >
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-400 mb-12 text-center">
           Proyectos Innovadores
@@ -121,7 +124,9 @@ const ProjectsCarousel = () => {
                 {project.negocio}
               </h3>
               <p className="text-base text-gray-700 text-center mb-2">
-                {project.descripcion}
+                {project.descripcion.length > 10
+                  ? project.descripcion.slice(0, 100) + "..."
+                  : project.descripcion}
               </p>
             </div>
           ))}

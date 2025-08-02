@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchProjectsFromSheet, Project } from "../lib/fetchSheetData";
 
 interface ProjectBioPageProps {
@@ -52,10 +52,27 @@ const ProjectBioPage: React.FC<ProjectBioPageProps> = ({ negocio }) => {
           {project.descripcion}
         </p>
         <button
-          onClick={goHome}
+          onClick={() => {
+            goHome();
+            // Esperar a que la navegación termine y el DOM esté listo
+            setTimeout(() => {
+              const el = document.getElementById("projects-carousel");
+              if (el) {
+                el.scrollIntoView({ behavior: "smooth", block: "start" });
+              } else {
+                // Si no existe, intentar de nuevo tras un pequeño delay
+                setTimeout(() => {
+                  const el2 = document.getElementById("projects-carousel");
+                  if (el2) {
+                    el2.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }
+                }, 400);
+              }
+            }, 400);
+          }}
           className="mt-4 px-6 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg shadow hover:from-blue-600 hover:to-cyan-600 transition-colors font-semibold"
         >
-          ← Volver a la página principal
+          ← Volver a la sección de proyectos
         </button>
       </div>
     </section>
