@@ -1,6 +1,13 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode } from "react";
 
-type Page = 'home' | 'service-1' | 'service-2' | 'service-3' | 'contact-form' | 'appointment-form';
+type Page =
+  | "home"
+  | "service-1"
+  | "service-2"
+  | "service-3"
+  | "contact-form"
+  | "appointment-form"
+  | { type: "project-detail"; negocio: string };
 
 interface RouterContextType {
   currentPage: Page;
@@ -13,7 +20,7 @@ const RouterContext = createContext<RouterContextType | undefined>(undefined);
 export const useRouter = () => {
   const context = useContext(RouterContext);
   if (context === undefined) {
-    throw new Error('useRouter must be used within a RouterProvider');
+    throw new Error("useRouter must be used within a RouterProvider");
   }
   return context;
 };
@@ -23,28 +30,27 @@ interface RouterProviderProps {
 }
 
 export const RouterProvider = ({ children }: RouterProviderProps) => {
-  const [currentPage, setCurrentPage] = useState<Page>('home');
+  const [currentPage, setCurrentPage] = useState<Page>("home");
 
   const navigateTo = (page: Page) => {
     setCurrentPage(page);
-    // Scroll to top when navigating
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const goHome = () => {
-    setCurrentPage('home');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setCurrentPage("home");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const value = {
     currentPage,
     navigateTo,
-    goHome
+    goHome,
   };
 
   return (
-    <RouterContext.Provider value={value}>
-      {children}
-    </RouterContext.Provider>
+    <RouterContext.Provider value={value}>{children}</RouterContext.Provider>
   );
 };
+export type { Page };
+// Fin del archivo

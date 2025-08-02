@@ -1,9 +1,10 @@
-import { useRouter } from "../contexts/RouterContext";
+import { useRouter, Page } from "../contexts/RouterContext";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 import About from "./About";
 import Services from "./Services";
 import ProjectsCarousel from "./ProjectsCarousel";
+import ProjectBioPage from "./ProjectBioPage";
 import Location from "./LocationImproved";
 import Footer from "./Footer";
 import FloatingSocialButton from "./FloatingSocialButton";
@@ -22,12 +23,10 @@ const MainApp = () => {
       <Navbar />
       <main>
         <Hero />
-         <ProjectsCarousel />
         <InfiniteLogos />
-       
         <About />
         <Services />
-        
+        <ProjectsCarousel />
         <Location />
       </main>
       <Footer />
@@ -37,6 +36,12 @@ const MainApp = () => {
 
   // Render based on current page
   const renderPage = () => {
+    if (
+      typeof currentPage === "object" &&
+      currentPage.type === "project-detail"
+    ) {
+      return <ProjectBioPage negocio={currentPage.negocio} />;
+    }
     switch (currentPage) {
       case "service-1":
         return (
