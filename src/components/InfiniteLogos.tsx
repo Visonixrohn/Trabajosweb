@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { fetchLogosFromSheet } from "../lib/logos";
+import { fetchLogosFromSheet, LogoItem } from "../lib/logos";
 
 const InfiniteLogos = () => {
-  const [logos, setLogos] = useState<string[]>([]);
+  const [logos, setLogos] = useState<LogoItem[]>([]);
 
   useEffect(() => {
     fetchLogosFromSheet().then((data) => {
-      setLogos(data.filter((p) => p.imagen).map((p) => p.imagen));
+      setLogos(data);
     });
   }, []);
 
@@ -25,12 +25,14 @@ const InfiniteLogos = () => {
         >
           {logosInfinite.map((logo, idx) => (
             <div key={idx} className="flex items-center justify-center h-20">
-              <img
-                src={logo}
-                alt={`logo-${idx}`}
-                className="h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                style={{ maxHeight: 64, maxWidth: 160 }}
-              />
+              <a href={logo.web} target="_blank" rel="noopener noreferrer">
+                <img
+                  src={logo.imagen}
+                  alt={`logo-${idx}`}
+                  className="h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                  style={{ maxHeight: 64, maxWidth: 160 }}
+                />
+              </a>
             </div>
           ))}
         </div>
