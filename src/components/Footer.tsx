@@ -123,11 +123,7 @@ const Footer = () => {
         {/* Footer Bottom */}
         <div className="border-t border-gray-700 pt-6 text-sm flex flex-col md:flex-row md:justify-between items-center text-gray-400">
           <p className="mb-4 md:mb-0">{t.footer.rights}</p>
-          <div className="flex space-x-6">
-            <a href="#" className="hover:text-white transition">Política de Privacidad</a>
-            <a href="#" className="hover:text-white transition">Términos de Servicio</a>
-            <a href="#" className="hover:text-white transition">Cookies</a>
-          </div>
+          
         </div>
       </div>
 
