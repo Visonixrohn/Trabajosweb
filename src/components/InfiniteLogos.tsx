@@ -25,7 +25,13 @@ const InfiniteLogos = () => {
         >
           {logosInfinite.map((logo, idx) => (
             <div key={idx} className="flex items-center justify-center h-20">
-              <a href={logo.web} target="_blank" rel="noopener noreferrer">
+              <a
+                href={
+                  logo.web.startsWith("http") ? logo.web : `https://${logo.web}`
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   src={logo.imagen}
                   alt={`logo-${idx}`}
