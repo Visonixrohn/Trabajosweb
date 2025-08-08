@@ -13,6 +13,7 @@ import ContactFormPage from "./ContactFormPage";
 import AppointmentFormPage from "./AppointmentFormPage";
 import { Smartphone, Globe, Share2 } from "lucide-react";
 import InfiniteLogos from "./InfiniteLogos";
+import CeoBiografia from "./CeoBiografia";
 
 const MainApp = () => {
   const { currentPage } = useRouter();
@@ -90,6 +91,8 @@ const MainApp = () => {
             <FloatingSocialButton />
           </>
         );
+      case "CeoBiografia":
+        return <CeoBiografia />;
       case "home":
       default:
         return <HomePage />;

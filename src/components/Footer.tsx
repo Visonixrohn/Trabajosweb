@@ -29,38 +29,8 @@ const Footer = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-14">
 
-          {/* Brand Info */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center space-x-3 mb-6">
-              <img src="/logo.png" alt="VISONIXRO" className="h-12 w-auto" loading="lazy" />
-              <span className="text-2xl font-bold tracking-wide">VISONIXRO</span>
-            </div>
-            <p className="text-gray-300 text-base leading-relaxed mb-6 max-w-md">
-              Innovación visual avanzada que transforma la manera en que interactuamos con la tecnología.
-              Liderando el futuro de las soluciones visuales.
-            </p>
-            <div className="flex items-center text-blue-300 space-x-2">
-              <Eye className="h-5 w-5" />
-              <span className="font-medium">Visión • Innovación • Tecnología</span>
-            </div>
-          </div>
-
-          {/* Enlaces Rápidos */}
-          <div>
-            <h3 className="text-xl font-semibold mb-5">Enlaces Rápidos</h3>
-            <nav className="space-y-3">
-              {quickLinks.map((link, i) => (
-                <button
-                  key={i}
-                  onClick={() => scrollToSection(link.href)}
-                  className="text-left text-gray-300 hover:text-white transition duration-200"
-                >
-                  {link.name}
-                </button>
-              ))}
-            </nav>
-          </div>
-
+     
+      
           {/* Información de contacto */}
           <div>
             <h3 className="text-xl font-semibold mb-5">{t.footer.contact}</h3>

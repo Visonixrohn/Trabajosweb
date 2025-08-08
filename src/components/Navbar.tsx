@@ -1,19 +1,31 @@
-import { useState } from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
-import { Globe, Menu, X } from 'lucide-react';
+import { useState } from "react";
+import { useRouter } from "../contexts/RouterContext";
+import { useLanguage } from "../contexts/LanguageContext";
+import { Globe, Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const { language, setLanguage, t } = useLanguage();
+  const { currentPage, navigateTo } = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleLanguage = () => {
-    setLanguage(language === 'es' ? 'en' : 'es');
+    setLanguage(language === "es" ? "en" : "es");
   };
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (currentPage !== "home") {
+      navigateTo("home");
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 400); // Espera a que el home se renderice
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
     setIsMenuOpen(false);
   };
@@ -33,31 +45,37 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <button
-              onClick={() => scrollToSection('hero')}
+              onClick={() => scrollToSection("hero")}
               className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
             >
               {t.nav.home}
             </button>
             <button
-              onClick={() => scrollToSection('about')}
+              onClick={() => scrollToSection("about")}
               className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
             >
               {t.nav.about}
             </button>
             <button
-              onClick={() => scrollToSection('services')}
+              onClick={() => scrollToSection("services")}
               className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
             >
               {t.nav.services}
             </button>
             <button
-              onClick={() => scrollToSection('location')}
+              onClick={() => scrollToSection("projects-carousel")}
+              className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
+            >
+              {t.nav.projects}
+            </button>
+            <button
+              onClick={() => scrollToSection("location")}
               className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
             >
               {t.nav.location}
             </button>
             <button
-              onClick={() => scrollToSection('contact')}
+              onClick={() => scrollToSection("contact")}
               className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
             >
               {t.nav.contact}
@@ -70,7 +88,7 @@ const Navbar = () => {
             >
               <Globe className="h-4 w-4 text-blue-600" />
               <span className="text-blue-600 font-medium">
-                {language === 'es' ? 'EN' : 'ES'}
+                {language === "es" ? "EN" : "ES"}
               </span>
             </button>
           </div>
@@ -84,7 +102,7 @@ const Navbar = () => {
             >
               <Globe className="h-4 w-4 text-blue-600" />
               <span className="text-blue-600 font-medium text-sm">
-                {language === 'es' ? 'EN' : 'ES'}
+                {language === "es" ? "EN" : "ES"}
               </span>
             </button>
 
@@ -92,7 +110,11 @@ const Navbar = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-gray-700 hover:text-blue-600 transition-colors duration-200"
             >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </button>
           </div>
         </div>
@@ -102,31 +124,37 @@ const Navbar = () => {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-gray-200">
               <button
-                onClick={() => scrollToSection('hero')}
+                onClick={() => scrollToSection("hero")}
                 className="block w-full text-left px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors duration-200"
               >
                 {t.nav.home}
               </button>
               <button
-                onClick={() => scrollToSection('about')}
+                onClick={() => scrollToSection("about")}
                 className="block w-full text-left px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors duration-200"
               >
                 {t.nav.about}
               </button>
               <button
-                onClick={() => scrollToSection('services')}
+                onClick={() => scrollToSection("services")}
                 className="block w-full text-left px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors duration-200"
               >
                 {t.nav.services}
               </button>
               <button
-                onClick={() => scrollToSection('location')}
+                onClick={() => scrollToSection("projects-carousel")}
+                className="block w-full text-left px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors duration-200"
+              >
+                {t.nav.projects}
+              </button>
+              <button
+                onClick={() => scrollToSection("location")}
                 className="block w-full text-left px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors duration-200"
               >
                 {t.nav.location}
               </button>
               <button
-                onClick={() => scrollToSection('contact')}
+                onClick={() => scrollToSection("contact")}
                 className="block w-full text-left px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors duration-200"
               >
                 {t.nav.contact}

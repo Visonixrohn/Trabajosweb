@@ -7,6 +7,7 @@ type Page =
   | "service-3"
   | "contact-form"
   | "appointment-form"
+  | "CeoBiografia"
   | { type: "project-detail"; negocio: string };
 
 interface RouterContextType {
