@@ -8,7 +8,7 @@ import FloatingSocialButton from "./FloatingSocialButton";
 const CeoBiografia = () => {
   return (
     <>
-      <div className="relative z-50">
+      <div className="relative z-50" id="CeoBiografia">
         <Navbar />
       </div>
       <main>
