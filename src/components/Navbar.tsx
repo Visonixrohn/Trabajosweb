@@ -37,7 +37,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <img src="/logo.png" alt="VISONIXRO" className="h-10 w-auto" />
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+            <span  onClick={() => scrollToSection("hero")} className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
               VISONIXRO
             </span>
           </div>

@@ -1,6 +1,7 @@
 import { useLanguage } from '../contexts/LanguageContext';
 import { useScrollAnimations } from '../hooks/useScrollAnimations';
 import { ChevronDown, Eye, Zap, Cpu } from 'lucide-react';
+import InfiniteLogos from './InfiniteLogos';
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -25,7 +26,7 @@ const Hero = () => {
         <div className="absolute bottom-40 left-1/4 w-40 h-40 bg-cyan-500/15 rounded-full blur-xl animate-pulse delay-2000 animate-float" style={{ animationDelay: '2s' }} />
         <div className="absolute bottom-20 right-20 w-56 h-56 bg-blue-600/10 rounded-full blur-2xl animate-pulse delay-500 animate-float" style={{ animationDelay: '0.5s' }} />
         <div className="absolute top-1/2 left-10 w-24 h-24 bg-purple-500/15 rounded-full blur-lg animate-pulse animate-float" style={{ animationDelay: '1.5s' }} />
-        <div className="absolute top-1/3 right-10 w-36 h-36 bg-cyan-400/10 rounded-full blur-xl animate-pulse animate-float" style={{ animationDelay: '3s' }} />
+        <div className="absolute top-1/3 right-10 w-36 h-36 bg-cyan-400/10 rounded-full blur-xl animate-pulse animate-float" style={{ animationDelay: '5s' }} />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

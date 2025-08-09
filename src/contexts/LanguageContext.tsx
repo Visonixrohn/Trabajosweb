@@ -113,7 +113,7 @@ const esTranslations: Translations = {
     title: "Acerca de VISONIXRO",
     subtitle: "Liderando la Revolución Visual",
     description:
-      "Somos una empresa pionera en el desarrollo de tecnologías visuales avanzadas que redefinen los límites de lo posible en el mundo digital.",
+      "Una empresa de desarrollo de tecnologías visuales avanzadas que redefinen los límites de lo posible en el mundo digital.",
     mission: "Nuestra Misión",
     missionText:
       "Brindar soluciones modernas, accesibles y de alta calidad que respondan a las necesidades reales de las personas, integrando creatividad, servicio personalizado y compromiso con la excelencia en todo lo que hacemos.",
@@ -248,7 +248,7 @@ const enTranslations: Translations = {
     title: "About VISONIXRO",
     subtitle: "Leading the Visual Revolution",
     description:
-      "We are a pioneering company in the development of advanced visual technologies that redefine the limits of what is possible in the digital world.",
+      "A company developing advanced visual technologies that redefine the boundaries of what is possible in the digital world.",
     mission: "Our Mission",
     missionText:
       "Provide modern, accessible and high-quality solutions that respond to the real needs of people, integrating creativity, personalized service and commitment to excellence in everything we do.",
