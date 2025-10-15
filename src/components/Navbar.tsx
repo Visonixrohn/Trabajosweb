@@ -69,12 +69,6 @@ const Navbar = () => {
               {t.nav.projects}
             </button>
             <button
-              onClick={() => scrollToSection("location")}
-              className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
-            >
-              {t.nav.location}
-            </button>
-            <button
               onClick={() => scrollToSection("contact")}
               className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
             >
@@ -146,12 +140,6 @@ const Navbar = () => {
                 className="block w-full text-left px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors duration-200"
               >
                 {t.nav.projects}
-              </button>
-              <button
-                onClick={() => scrollToSection("location")}
-                className="block w-full text-left px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors duration-200"
-              >
-                {t.nav.location}
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
