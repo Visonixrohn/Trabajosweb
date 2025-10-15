@@ -167,134 +167,54 @@ const Location = () => {
 
   return (
     <section
-      id="location"
+      id="contacto"
       className="py-20 bg-gradient-to-b from-gray-50 to-white"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-            {t.location.title}
+            Contacto
           </h2>
-          <p className="text-xl text-gray-600 mb-6">{t.location.subtitle}</p>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto rounded-full"></div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="flex flex-col lg:flex-row gap-8 items-stretch">
           {/* Contact Information */}
-          <div className="space-y-8">
-            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                Información de Contacto
-              </h3>
-
-              <div className="space-y-6">
-                {contactInfo.map((item, index) => (
-                  <div key={index} className="flex items-start space-x-4">
-                    <div className={`p-3 rounded-lg bg-gray-50 ${item.color}`}>
-                      <item.icon className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">
-                        {item.label}
-                      </h4>
-                      <p className="text-gray-600">{item.value}</p>
-                    </div>
+          <div className="flex-1 bg-white rounded-2xl p-8 shadow-lg border border-gray-100 mb-8 lg:mb-0">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              Información de Contacto
+            </h3>
+            <div className="space-y-6">
+              {contactInfo.map((item, index) => (
+                <div key={index} className="flex items-center space-x-4">
+                  <div className={`p-3 rounded-lg bg-gray-50 ${item.color}`}>
+                    <item.icon className="h-6 w-6" />
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Additional Info */}
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-white">
-              <h3 className="text-2xl font-bold mb-4">¿Cómo llegar?</h3>
-              <p className="text-blue-100 mb-6">
-                Estamos ubicados en Honduras, Centroamérica. Nuestra oficina es
-                de fácil acceso y cuenta con estacionamiento disponible para
-                nuestros visitantes.
-              </p>
-              <div className="flex items-center space-x-4">
-                <div className="flex items-center space-x-2">
-                  <MapPin className="h-5 w-5 text-blue-200" />
-                  <span className="text-sm text-blue-200">
-                    GPS: 16.351817, -86.464353
-                  </span>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-1">
+                      {item.label}
+                    </h4>
+                    <p className="text-gray-600">{item.value}</p>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
 
-          {/* Google Map */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Nuestra Ubicación
-            </h3>
-
-            {mapError ? (
-              <MapErrorFallback error={mapError} />
-            ) : (
-              <LoadScript
-                googleMapsApiKey="AIzaSyA-Jv8AMyTySXYsd8rY2kEdNhhotdNWolg"
-                onLoad={onLoad}
-                onError={onError}
-                loadingElement={
-                  <div className="h-[400px] bg-gray-100 rounded-2xl flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
-                      <p className="text-gray-600">Cargando mapa...</p>
-                    </div>
-                  </div>
-                }
-              >
-                {isLoaded ? (
-                  <GoogleMap
-                    mapContainerStyle={mapContainerStyle}
-                    center={center}
-                    zoom={15}
-                    options={mapOptions}
-                  >
-                    <Marker
-                      position={center}
-                      onClick={() => setShowInfoWindow(!showInfoWindow)}
-                      icon={MarkerIcon}
-                    />
-
-                    {showInfoWindow && (
-                      <InfoWindow
-                        position={center}
-                        onCloseClick={() => setShowInfoWindow(false)}
-                      >
-                        <div className="p-2 text-center">
-                          <div className="flex items-center justify-center mb-2">
-                            <img
-                              src="/logo.png"
-                              alt="VISONIXRO"
-                              className="h-8 w-auto"
-                            />
-                          </div>
-                          <h4 className="font-bold text-gray-900 mb-1">
-                            VISONIXRO
-                          </h4>
-                          <p className="text-sm text-gray-600">
-                            Oficina Principal
-                          </p>
-                          <p className="text-xs text-gray-500 mt-1">
-                            Honduras, Centroamérica
-                          </p>
-                        </div>
-                      </InfoWindow>
-                    )}
-                  </GoogleMap>
-                ) : (
-                  <StaticMapFallback />
-                )}
-              </LoadScript>
-            )}
-
-            {/* Map Controls Info */}
-            <div className="mt-4 text-sm text-gray-600">
-              <p>💡 Haz clic en el marcador para más información</p>
-              <p>🗺️ Usa los controles del mapa para navegar</p>
+          {/* Additional Info */}
+          <div className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-white flex flex-col justify-center">
+            <h3 className="text-2xl font-bold mb-4">¿Cómo llegar?</h3>
+            <p className="text-blue-100 mb-6">
+              Estamos ubicados en Honduras, Centroamérica. Nuestra oficina es
+              de fácil acceso y cuenta con estacionamiento disponible para
+              nuestros visitantes.
+            </p>
+            <div className="flex items-center space-x-4">
+              <MapPin className="h-5 w-5 text-blue-200" />
+              <span className="text-sm text-blue-200">
+                GPS: 16.351817, -86.464353
+              </span>
             </div>
           </div>
         </div>
