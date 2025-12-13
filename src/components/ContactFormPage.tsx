@@ -108,7 +108,7 @@ Espero su contacto pronto. Gracias.`;
     try {
       // Generate WhatsApp URL
       const message = generateWhatsAppMessage();
-      const whatsappUrl = `https://api.whatsapp.com/send/?phone=50488632788&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
+      const whatsappUrl = `https://api.whatsapp.com/send/?phone=50488857653&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
       
       // Open WhatsApp
       window.open(whatsappUrl, '_blank');

@@ -165,7 +165,7 @@ Espero confirmen la disponibilidad. Gracias.`;
     try {
       // Generate WhatsApp URL
       const message = generateWhatsAppMessage();
-      const whatsappUrl = `https://api.whatsapp.com/send/?phone=50488632788&text=${encodeURIComponent(
+      const whatsappUrl = `https://api.whatsapp.com/send/?phone=50488857653&text=${encodeURIComponent(
         message
       )}&type=phone_number&app_absent=0`;
 

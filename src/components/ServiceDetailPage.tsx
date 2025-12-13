@@ -108,7 +108,7 @@ const ServiceDetailPage = ({ serviceKey, icon: Icon, bgGradient, imageUrl }: Ser
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
-                href={`https://api.whatsapp.com/send/?phone=50488632788&text=Hola, me interesa el servicio de ${service.title}&type=phone_number&app_absent=0`}
+                href={`https://api.whatsapp.com/send/?phone=50488857653&text=Hola, me interesa el servicio de ${service.title}&type=phone_number&app_absent=0`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"

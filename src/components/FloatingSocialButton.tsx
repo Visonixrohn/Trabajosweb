@@ -8,7 +8,7 @@ const FloatingSocialButton = () => {
     {
       name: 'WhatsApp',
       icon: MessageCircle,
-      url: 'https://api.whatsapp.com/send/?phone=50488632788&text&type=phone_number&app_absent=0',
+      url: 'https://api.whatsapp.com/send/?phone=50488857653&text&type=phone_number&app_absent=0',
       color: 'bg-green-500 hover:bg-green-600',
       delay: 'delay-75'
     },

@@ -8,7 +8,7 @@ const Footer = () => {
     { icon: Facebook, href: 'https://www.facebook.com/people/VisonixRo/61574218733448/', label: 'Facebook' },
     { icon: Twitter, href: 'https://x.com/ViSonixRo', label: 'Twitter' },
     { icon: Instagram, href: 'https://www.instagram.com/visonixro', label: 'Instagram' },
-    { icon: MessageCircle, href: 'https://api.whatsapp.com/send/?phone=50488632788', label: 'WhatsApp' }
+    { icon: MessageCircle, href: 'https://api.whatsapp.com/send/?phone=50488857653', label: 'WhatsApp' }
   ];
 
   const scrollToSection = (sectionId: string) => {
