@@ -112,7 +112,6 @@ const AppointmentFormPage = () => {
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData({ ...formData, [field]: value });
-    // Clear error when user starts typing
     if (errors[field]) {
       setErrors({ ...errors, [field]: undefined });
     }
@@ -163,19 +162,14 @@ Espero confirmen la disponibilidad. Gracias.`;
     setIsSubmitting(true);
 
     try {
-      // Generate WhatsApp URL
       const message = generateWhatsAppMessage();
       const whatsappUrl = `https://api.whatsapp.com/send/?phone=50488857653&text=${encodeURIComponent(
         message
       )}&type=phone_number&app_absent=0`;
 
-      // Open WhatsApp
       window.open(whatsappUrl, "_blank");
-
-      // Show success message
       setShowSuccess(true);
 
-      // Reset form
       setFormData({
         name: "",
         phone: "",
@@ -186,7 +180,6 @@ Espero confirmen la disponibilidad. Gracias.`;
         time: "",
       });
 
-      // Auto redirect to home after 3 seconds
       setTimeout(() => {
         goHome();
       }, 3000);
@@ -197,23 +190,23 @@ Espero confirmen la disponibilidad. Gracias.`;
     }
   };
 
-  // Get minimum date (today)
   const today = new Date().toISOString().split("T")[0];
 
   if (showSuccess) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
-        <div className="max-w-md mx-auto text-center p-8">
-          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle className="h-8 w-8 text-green-600" />
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
+        <div className="max-w-md w-full bg-slate-900 border border-white/10 rounded-2xl p-8 text-center shadow-2xl relative overflow-hidden group">
+          <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+          <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6 relative z-10">
+            <CheckCircle className="h-10 w-10 text-green-400" />
           </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold text-white mb-4 relative z-10">
             ¡Cita Agendada!
           </h2>
-          <p className="text-gray-600 mb-6">
+          <p className="text-gray-400 mb-6 relative z-10">
             Te contactaremos para confirmar la disponibilidad de tu cita.
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-blue-400 animate-pulse relative z-10">
             Redirigiendo al inicio en unos segundos...
           </p>
         </div>
@@ -222,54 +215,43 @@ Espero confirmen la disponibilidad. Gracias.`;
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <div className="min-h-screen bg-slate-950 text-white relative flex flex-col">
+      {/* Background Effects */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[100px] pointer-events-none" />
+
+
       {/* Header */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
+      <div className="bg-slate-900/50 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center h-16">
+          <div className="flex items-center h-20">
             <button
               onClick={goHome}
-              className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors duration-200 mr-4"
+              className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 mr-4 group"
             >
-              <ArrowLeft className="h-5 w-5" />
-              <span className="font-medium">{t.forms.contact.backToHome}</span>
+              <div className="p-2 rounded-full bg-white/5 group-hover:bg-white/10 transition-colors">
+                <ArrowLeft className="h-5 w-5" />
+              </div>
+              <span className="font-medium hidden sm:inline">{t.forms.contact.backToHome}</span>
             </button>
-            {/* Logo y foto de perfil grandes a los lados del formulario */}
             <div className="hidden lg:flex flex-1 items-center justify-between">
               <img
                 src="/logo.png"
                 alt="VISONIXRO"
-                className="h-32 w-auto animate-spin-custom drop-shadow-xl"
-                style={{
-                  animationDuration: "2.5s",
-                  animationTimingFunction: "linear",
-                  animationIterationCount: "infinite",
-                }}
+                className="h-16 w-auto drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]"
               />
-              <span className="text-3xl font-extrabold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mx-8 tracking-wide">
+              <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-violet-400 to-cyan-400 tracking-wide font-display">
                 VISONIXRO
               </span>
-             
             </div>
-            {/* Para móviles, mantener la versión compacta */}
+            {/* Mobile Logo */}
             <div className="flex lg:hidden items-center space-x-3 ml-auto">
               <img
                 src="/logo.png"
                 alt="VISONIXRO"
-                className="h-10 w-auto animate-spin-custom"
-                style={{
-                  animationDuration: "2.5s",
-                  animationTimingFunction: "linear",
-                  animationIterationCount: "infinite",
-                }}
+                className="h-10 w-auto"
               />
-              <img
-                src="/perf.png"
-                alt="Miguel Ángel Romero Guillén"
-                className="h-10 w-10 rounded-full border-2 border-blue-500 shadow-md object-cover"
-                style={{ minWidth: 40, minHeight: 40 }}
-              />
-              <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-violet-400 font-display">
                 VISONIXRO
               </span>
             </div>
@@ -278,283 +260,250 @@ Espero confirmen la disponibilidad. Gracias.`;
       </div>
 
       {/* Form Section */}
-      <section className="py-12">
+      <section className="py-12 relative z-10 flex-grow flex items-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mx-auto">
-            {/* Header */}
+          <div className="max-w-4xl mx-auto">
+            {/* Header Text */}
             <div className="text-center mb-12">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 font-display">
                 {t.forms.appointment.title}
               </h1>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-blue-200/80">
                 {t.forms.appointment.subtitle}
               </p>
             </div>
 
-            {/* Form */}
-            <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-              <div className="bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-6">
-                <h2 className="text-2xl font-bold text-white">
-                  Información y Cita
-                </h2>
+            <div className="flex flex-col lg:flex-row gap-8">
+              {/* Left Column (Info/Visual) - Desktop Only */}
+              <div className="hidden lg:flex flex-col justify-center items-center w-1/3 space-y-8">
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-violet-500 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
+                  <img
+                    src="/perf.png"
+                    alt="Miguel Ángel Romero Guillén"
+                    className="relative h-48 w-48 rounded-full border-4 border-white/20 shadow-2xl object-cover"
+                  />
+                </div>
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-white mb-2">Miguel A. Romero</h3>
+                  <p className="text-blue-400 text-sm">CEO & Developer</p>
+                </div>
               </div>
-              {/* Logo y foto de perfil grandes a los lados del formulario (solo desktop) */}
-              <div className="hidden lg:flex items-center justify-between px-8 pt-8 pb-2">
-                <img
-                  src="/logo.png"
-                  alt="VISONIXRO"
-                  className="h-32 w-auto animate-spin-custom drop-shadow-xl"
-                  style={{
-                    animationDuration: "2.5s",
-                    animationTimingFunction: "linear",
-                    animationIterationCount: "infinite",
-                  }}
-                />
-                <img
-                  src="/perf.png"
-                  alt="Miguel Ángel Romero Guillén"
-                  className="h-32 w-32 rounded-full border-4 border-blue-500 shadow-2xl object-cover"
-                  style={{ minWidth: 128, minHeight: 128 }}
-                />
-              </div>
-              {/* Para móviles, versión compacta */}
-              <div className="flex lg:hidden items-center justify-center gap-6 px-4 pt-6 pb-2">
-                <img
-                  src="/logo.png"
-                  alt="VISONIXRO"
-                  className="h-12 w-auto animate-spin-custom"
-                  style={{
-                    animationDuration: "2.5s",
-                    animationTimingFunction: "linear",
-                    animationIterationCount: "infinite",
-                  }}
-                />
-                <img
-                  src="/perf.png"
-                  alt="Miguel Ángel Romero Guillén"
-                  className="h-12 w-12 rounded-full border-2 border-blue-500 shadow-md object-cover"
-                  style={{ minWidth: 48, minHeight: 48 }}
-                />
-              </div>
-              <form onSubmit={handleSubmit} className="p-8">
-                <div className="space-y-6">
-                  {/* Name */}
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      <User className="h-4 w-4 inline mr-2" />
-                      {t.forms.contact.name} *
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.name}
-                      onChange={(e) =>
-                        handleInputChange("name", e.target.value)
-                      }
-                      className={`w-full px-4 py-3 rounded-lg border ${
-                        errors.name ? "border-red-300" : "border-gray-300"
-                      } focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200`}
-                      placeholder="Ingresa tu nombre completo"
-                    />
-                    {errors.name && (
-                      <p className="mt-1 text-sm text-red-600 flex items-center">
-                        <AlertCircle className="h-4 w-4 mr-1" />
-                        {errors.name}
-                      </p>
-                    )}
-                  </div>
 
-                  {/* Phone */}
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      <Phone className="h-4 w-4 inline mr-2" />
-                      {t.forms.contact.phone} *
-                    </label>
-                    <input
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) =>
-                        handleInputChange("phone", e.target.value)
-                      }
-                      className={`w-full px-4 py-3 rounded-lg border ${
-                        errors.phone ? "border-red-300" : "border-gray-300"
-                      } focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200`}
-                      placeholder="+504 1234-5678"
-                    />
-                    {errors.phone && (
-                      <p className="mt-1 text-sm text-red-600 flex items-center">
-                        <AlertCircle className="h-4 w-4 mr-1" />
-                        {errors.phone}
-                      </p>
-                    )}
+              {/* Form Container */}
+              <div className="flex-1 bg-white/5 backdrop-blur-md rounded-3xl shadow-2xl border border-white/10 overflow-hidden relative">
+                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-violet-500 to-cyan-500"></div>
+
+                {/* Mobile Profile (Visible only on small screens) */}
+                <div className="lg:hidden flex items-center justify-center gap-4 p-6 pb-0">
+                  <img
+                    src="/logo.png"
+                    alt="VISONIXRO"
+                    className="h-12 w-auto"
+                  />
+                  <img
+                    src="/perf.png"
+                    alt="Miguel Ángel Romero Guillén"
+                    className="h-12 w-12 rounded-full border-2 border-blue-500 object-cover"
+                  />
+                </div>
+
+                <form onSubmit={handleSubmit} className="p-8 space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {/* Name */}
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-blue-300 flex items-center">
+                        <User className="h-4 w-4 mr-2" />
+                        {t.forms.contact.name} *
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.name}
+                        onChange={(e) => handleInputChange("name", e.target.value)}
+                        className={`w-full px-4 py-3 rounded-xl bg-slate-900/50 border ${errors.name ? "border-red-500/50" : "border-white/10"
+                          } text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all`}
+                        placeholder="Tu nombre completo"
+                      />
+                      {errors.name && <p className="text-xs text-red-400 ml-1">{errors.name}</p>}
+                    </div>
+
+                    {/* Phone */}
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-blue-300 flex items-center">
+                        <Phone className="h-4 w-4 mr-2" />
+                        {t.forms.contact.phone} *
+                      </label>
+                      <input
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) => handleInputChange("phone", e.target.value)}
+                        className={`w-full px-4 py-3 rounded-xl bg-slate-900/50 border ${errors.phone ? "border-red-500/50" : "border-white/10"
+                          } text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all`}
+                        placeholder="+504 9999-9999"
+                      />
+                      {errors.phone && <p className="text-xs text-red-400 ml-1">{errors.phone}</p>}
+                    </div>
                   </div>
 
                   {/* Email */}
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      <Mail className="h-4 w-4 inline mr-2" />
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-blue-300 flex items-center">
+                      <Mail className="h-4 w-4 mr-2" />
                       {t.forms.contact.email} *
                     </label>
                     <input
                       type="email"
                       value={formData.email}
-                      onChange={(e) =>
-                        handleInputChange("email", e.target.value)
-                      }
-                      className={`w-full px-4 py-3 rounded-lg border ${
-                        errors.email ? "border-red-300" : "border-gray-300"
-                      } focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200`}
-                      placeholder="tu@email.com"
+                      onChange={(e) => handleInputChange("email", e.target.value)}
+                      className={`w-full px-4 py-3 rounded-xl bg-slate-900/50 border ${errors.email ? "border-red-500/50" : "border-white/10"
+                        } text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all`}
+                      placeholder="tucorreo@ejemplo.com"
                     />
-                    {errors.email && (
-                      <p className="mt-1 text-sm text-red-600 flex items-center">
-                        <AlertCircle className="h-4 w-4 mr-1" />
-                        {errors.email}
-                      </p>
-                    )}
+                    {errors.email && <p className="text-xs text-red-400 ml-1">{errors.email}</p>}
                   </div>
 
-                  {/* Business Type */}
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      <Building className="h-4 w-4 inline mr-2" />
-                      {t.forms.contact.businessType} *
-                    </label>
-                    <select
-                      value={formData.businessType}
-                      onChange={(e) =>
-                        handleInputChange("businessType", e.target.value)
-                      }
-                      className={`w-full px-4 py-3 rounded-lg border ${
-                        errors.businessType
-                          ? "border-red-300"
-                          : "border-gray-300"
-                      } focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200`}
-                    >
-                      <option value="">Selecciona tipo de negocio</option>
-                      {t.forms.businessTypes.map((type, index) => (
-                        <option key={index} value={type}>
-                          {type}
-                        </option>
-                      ))}
-                    </select>
-                    {errors.businessType && (
-                      <p className="mt-1 text-sm text-red-600 flex items-center">
-                        <AlertCircle className="h-4 w-4 mr-1" />
-                        {errors.businessType}
-                      </p>
-                    )}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {/* Business Type */}
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-blue-300 flex items-center">
+                        <Building className="h-4 w-4 mr-2" />
+                        {t.forms.contact.businessType} *
+                      </label>
+                      <div className="relative">
+                        <select
+                          value={formData.businessType}
+                          onChange={(e) => handleInputChange("businessType", e.target.value)}
+                          className={`w-full px-4 py-3 rounded-xl bg-slate-900/50 border ${errors.businessType ? "border-red-500/50" : "border-white/10"
+                            } text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 appearance-none transition-all cursor-pointer`}
+                        >
+                          <option value="" className="bg-slate-900 text-gray-500">Selecciona tipo de negocio</option>
+                          {t.forms.businessTypes.map((type, index) => (
+                            <option key={index} value={type} className="bg-slate-900 text-white">
+                              {type}
+                            </option>
+                          ))}
+                        </select>
+                        <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-400">
+                          <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path></svg>
+                        </div>
+                      </div>
+                      {errors.businessType && <p className="text-xs text-red-400 ml-1">{errors.businessType}</p>}
+                    </div>
+
+                    {/* Service Type */}
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-blue-300 flex items-center">
+                        <Briefcase className="h-4 w-4 mr-2" />
+                        {t.forms.contact.serviceType} *
+                      </label>
+                      <div className="relative">
+                        <select
+                          value={formData.serviceType}
+                          onChange={(e) => handleInputChange("serviceType", e.target.value)}
+                          className={`w-full px-4 py-3 rounded-xl bg-slate-900/50 border ${errors.serviceType ? "border-red-500/50" : "border-white/10"
+                            } text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 appearance-none transition-all cursor-pointer`}
+                        >
+                          <option value="" className="bg-slate-900 text-gray-500">Selecciona el servicio</option>
+                          {t.forms.serviceTypes.map((type, index) => (
+                            <option key={index} value={type} className="bg-slate-900 text-white">
+                              {type}
+                            </option>
+                          ))}
+                        </select>
+                        <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-400">
+                          <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path></svg>
+                        </div>
+                      </div>
+                      {errors.serviceType && <p className="text-xs text-red-400 ml-1">{errors.serviceType}</p>}
+                    </div>
                   </div>
 
-                  {/* Service Type */}
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      <Briefcase className="h-4 w-4 inline mr-2" />
-                      {t.forms.contact.serviceType} *
-                    </label>
-                    <select
-                      value={formData.serviceType}
-                      onChange={(e) =>
-                        handleInputChange("serviceType", e.target.value)
-                      }
-                      className={`w-full px-4 py-3 rounded-lg border ${
-                        errors.serviceType
-                          ? "border-red-300"
-                          : "border-gray-300"
-                      } focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200`}
-                    >
-                      <option value="">Selecciona el servicio</option>
-                      {t.forms.serviceTypes.map((type, index) => (
-                        <option key={index} value={type}>
-                          {type}
-                        </option>
-                      ))}
-                    </select>
-                    {errors.serviceType && (
-                      <p className="mt-1 text-sm text-red-600 flex items-center">
-                        <AlertCircle className="h-4 w-4 mr-1" />
-                        {errors.serviceType}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Date and Time Row */}
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid md:grid-cols-2 gap-6">
                     {/* Date */}
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        <Calendar className="h-4 w-4 inline mr-2" />
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-blue-300 flex items-center">
+                        <Calendar className="h-4 w-4 mr-2" />
                         {t.forms.appointment.date} *
                       </label>
-                      <input
-                        type="date"
-                        value={formData.date}
-                        onChange={(e) =>
-                          handleInputChange("date", e.target.value)
-                        }
-                        min={today}
-                        className={`w-full px-4 py-3 rounded-lg border ${
-                          errors.date ? "border-red-300" : "border-gray-300"
-                        } focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200`}
-                      />
-                      {errors.date && (
-                        <p className="mt-1 text-sm text-red-600 flex items-center">
-                          <AlertCircle className="h-4 w-4 mr-1" />
-                          {errors.date}
-                        </p>
-                      )}
+                      <div className="relative">
+                        <input
+                          type="date"
+                          value={formData.date}
+                          onChange={(e) => handleInputChange("date", e.target.value)}
+                          min={today}
+                          className={`w-full px-4 py-3 rounded-xl bg-slate-900/50 border ${errors.date ? "border-red-500/50" : "border-white/10"
+                            } text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all cursor-pointer`}
+                          style={{ colorScheme: 'dark' }}
+                        />
+                        <style>{`
+                                        input[type="date"]::-webkit-calendar-picker-indicator {
+                                            filter: invert(1);
+                                            cursor: pointer;
+                                            opacity: 0.6;
+                                        }
+                                        input[type="date"]::-webkit-calendar-picker-indicator:hover {
+                                            opacity: 1;
+                                        }
+                                    `}</style>
+                      </div>
+                      {errors.date && <p className="text-xs text-red-400 ml-1">{errors.date}</p>}
                     </div>
 
                     {/* Time */}
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        <Clock className="h-4 w-4 inline mr-2" />
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-blue-300 flex items-center">
+                        <Clock className="h-4 w-4 mr-2" />
                         {t.forms.appointment.time} *
                       </label>
-                      <input
-                        type="time"
-                        value={formData.time}
-                        onChange={(e) =>
-                          handleInputChange("time", e.target.value)
-                        }
-                        className={`w-full px-4 py-3 rounded-lg border ${
-                          errors.time ? "border-red-300" : "border-gray-300"
-                        } focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors duration-200`}
-                      />
-                      {errors.time && (
-                        <p className="mt-1 text-sm text-red-600 flex items-center">
-                          <AlertCircle className="h-4 w-4 mr-1" />
-                          {errors.time}
-                        </p>
-                      )}
+                      <div className="relative">
+                        <input
+                          type="time"
+                          value={formData.time}
+                          onChange={(e) => handleInputChange("time", e.target.value)}
+                          className={`w-full px-4 py-3 rounded-xl bg-slate-900/50 border ${errors.time ? "border-red-500/50" : "border-white/10"
+                            } text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all cursor-pointer`}
+                          style={{ colorScheme: 'dark' }}
+                        />
+                        <style>{`
+                                        input[type="time"]::-webkit-calendar-picker-indicator {
+                                            filter: invert(1);
+                                            cursor: pointer;
+                                            opacity: 0.6;
+                                        }
+                                        input[type="time"]::-webkit-calendar-picker-indicator:hover {
+                                            opacity: 1;
+                                        }
+                                    `}</style>
+                      </div>
+                      {errors.time && <p className="text-xs text-red-400 ml-1">{errors.time}</p>}
                     </div>
                   </div>
-                </div>
 
-                {/* Submit Button */}
-                <div className="mt-8">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? (
-                      <div className="flex items-center justify-center">
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                        Agendando...
-                      </div>
-                    ) : (
-                      <div className="flex items-center justify-center">
-                        <Calendar className="h-5 w-5 mr-2" />
-                        {t.forms.appointment.schedule}
-                      </div>
-                    )}
-                  </button>
-                </div>
-
-                <p className="text-sm text-gray-500 text-center mt-4">
-                  * Campos obligatorios
-                </p>
-              </form>
+                  {/* Submit Button */}
+                  <div className="pt-4">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-gradient-to-r from-blue-600 via-violet-600 to-blue-600 bg-[length:200%_auto] hover:bg-right hover:scale-[1.02] active:scale-[0.98] text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-[0_0_20px_rgba(79,70,229,0.4)] disabled:opacity-50 disabled:cursor-not-allowed group"
+                    >
+                      {isSubmitting ? (
+                        <div className="flex items-center justify-center">
+                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                          Agendando...
+                        </div>
+                      ) : (
+                        <div className="flex items-center justify-center">
+                          <Calendar className="h-5 w-5 mr-2 group-hover:rotate-12 transition-transform" />
+                          {t.forms.appointment.schedule}
+                        </div>
+                      )}
+                    </button>
+                  </div>
+                  <p className="text-sm text-gray-500 text-center">
+                    * Campos obligatorios
+                  </p>
+                </form>
+              </div>
             </div>
           </div>
         </div>

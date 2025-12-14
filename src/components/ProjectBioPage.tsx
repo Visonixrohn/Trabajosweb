@@ -27,28 +27,32 @@ const ProjectBioPage: React.FC<ProjectBioPageProps> = ({ negocio }) => {
   }, [negocio]);
 
   if (loading) {
-    return <div className="p-10 text-center text-lg">Cargando proyecto...</div>;
+    return <div className="p-10 text-center text-lg text-white">Cargando proyecto...</div>;
   }
   if (error || !project) {
     return (
-      <div className="p-10 text-center text-red-500">
+      <div className="p-10 text-center text-red-400">
         {error || "Proyecto no encontrado."}
       </div>
     );
   }
 
   return (
-    <section className="w-full min-h-[60vh] bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 py-20 flex justify-center items-center">
-      <div className="bg-white rounded-2xl shadow-2xl p-10 max-w-2xl w-full flex flex-col items-center">
+    <section className="w-full min-h-[60vh] bg-slate-950 py-20 flex justify-center items-center relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-10 max-w-2xl w-full flex flex-col items-center relative z-10">
         <img
           src={project.imagen}
           alt={project.negocio}
-          className="object-contain max-h-60 max-w-full rounded-xl shadow-lg mb-6 bg-white"
+          className="object-contain max-h-60 max-w-full rounded-xl shadow-lg mb-6 bg-slate-900 border border-white/10"
         />
-        <h1 className="text-4xl font-bold text-blue-900 mb-4 text-center">
+        <h1 className="text-4xl font-bold text-white mb-4 text-center font-display">
           {project.negocio}
         </h1>
-        <p className="text-lg text-gray-700 text-center mb-6">
+        <p className="text-lg text-gray-300 text-center mb-6 font-light">
           {project.descripcion}
         </p>
         <button
@@ -70,7 +74,7 @@ const ProjectBioPage: React.FC<ProjectBioPageProps> = ({ negocio }) => {
               }
             }, 400);
           }}
-          className="mt-4 px-6 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg shadow hover:from-blue-600 hover:to-cyan-600 transition-colors font-semibold"
+          className="mt-4 px-6 py-2 bg-gradient-to-r from-blue-600 to-violet-600 text-white rounded-lg shadow-[0_0_15px_rgba(79,70,229,0.5)] hover:from-blue-700 hover:to-violet-700 transition-all font-semibold hover:scale-105"
         >
           ← Volver a la sección de proyectos
         </button>
